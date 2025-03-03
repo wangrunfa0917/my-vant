@@ -55,11 +55,22 @@ export function scrollTopTo(
 
     setScrollTop(scroller, current);
 
-    if ((isDown && current < to) || (!isDown && current > to)) {
-      rafId = raf(animate);
-    } else if (callback) {
-      rafId = raf(callback as FrameRequestCallback);
-    }
+    // if ((isDown && current < to) || (!isDown && current > to)) {
+    //   setTimeout(() => {
+    //     rafId = raf(callback as FrameRequestCallback);
+    //   }, duration * 1000);
+    // } else if (callback) {
+    //   rafId = raf(callback as FrameRequestCallback);
+    // }
+
+    rafId = raf(animate);
+
+    // callback()
+      // setTimeout(() => {
+        // rafId = raf(callback as FrameRequestCallback);
+      // }, duration * 1000);
+
+
   }
 
   animate();

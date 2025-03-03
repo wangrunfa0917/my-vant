@@ -67,6 +67,14 @@ const beforeChange = (name: number) => {
     setTimeout(() => resolve(name !== 3), 1000);
   });
 };
+/** 内容的滚动 */
+const tabsRef = ref();
+/** 手动控制滚动 */
+const handleClickTab = (obj:any) => {
+  if (tabsRef.value) {
+    tabsRef.value.scrollTo(obj.name);
+  }
+};
 </script>
 
 <template>
@@ -159,25 +167,32 @@ const beforeChange = (name: number) => {
   </demo-block>
 
   <demo-block :title="t('title10')">
-    <van-tabs v-model:active="active10" scrollspy sticky>
-      <van-tab :title="t('tab') + index" v-for="index in 8" :key="index">
+    <van-tabs
+      v-model:active="active10"
+      scrollspy
+      sticky
+      ref="tabsRef"
+      @click-tab="handleClickTab"
+    >
+      <van-tab :title="t('tab') + index" v-for="index in 10" :key="index">
+        <div style="height: 10vh;">
         {{ t('content') }} {{ index }}
+        </div>
       </van-tab>
     </van-tabs>
   </demo-block>
 
-  <demo-block :title="t('beforeChange')">
+  <!-- <demo-block :title="t('beforeChange')">
     <van-tabs v-model:active="active11" :before-change="beforeChange">
       <van-tab :title="t('tab') + index" v-for="index in 4" :key="index">
         {{ t('content') }} {{ index }}
       </van-tab>
     </van-tabs>
-  </demo-block>
+  </demo-block> -->
 </template>
-
 <style lang="less">
 .demo-tab {
-  margin-bottom: 80vh;
+  // margin-bottom: 80vh;
 
   .van-tab .van-icon {
     margin-right: 5px;

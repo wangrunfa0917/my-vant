@@ -288,7 +288,8 @@ export default defineComponent({
           cancelScrollTopToRaf = scrollTopTo(
             scroller.value,
             to,
-            immediate ? 0 : +props.duration,
+            // immediate ? 0 : +props.duration,
+            0.3,
             () => {
               lockScroll = false;
             },
@@ -337,7 +338,7 @@ export default defineComponent({
     const scrollTo = (name: Numeric) => {
       nextTick(() => {
         setCurrentIndexByName(name);
-        scrollToCurrentContent(true);
+        scrollToCurrentContent();
       });
     };
 
@@ -433,7 +434,7 @@ export default defineComponent({
           setCurrentIndexByName(props.active);
           setLine();
           nextTick(() => {
-            scrollIntoView(true);
+            scrollIntoView();
           });
         }
       },
@@ -446,7 +447,7 @@ export default defineComponent({
         if (wrapRef.value) {
           tabHeight = useRect(wrapRef.value).height;
         }
-        scrollIntoView(true);
+        scrollIntoView();
       });
     };
 
